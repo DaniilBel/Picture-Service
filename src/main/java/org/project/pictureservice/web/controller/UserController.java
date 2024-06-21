@@ -15,6 +15,7 @@ import org.project.pictureservice.web.mappers.UserMapper;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +43,8 @@ public class UserController {
 
     private final UserMapper userMapper;
     private final PictureMapper pictureMapper;
+
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @PutMapping
     @MutationMapping(name = "updateUser")
@@ -94,5 +97,15 @@ public class UserController {
         Picture picture = pictureMapper.toEntity(dto);
         Picture createdPicture = pictureService.create(picture, id);
         return pictureMapper.toDto(createdPicture);
+    }
+
+    @PostMapping
+    @Operation(summary = "Edit picture in current user")
+    @PreAuthorize("@customSecurityExpression.canAccessUser(#id)")
+    public void edit(
+            @RequestBody final Long id,
+            @RequestBody final PictureDto dto
+    ) {
+        kafkaTemplate.send("picture-service-topic", id.toString());
     }
 }
