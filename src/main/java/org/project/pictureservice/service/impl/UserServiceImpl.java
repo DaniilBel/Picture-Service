@@ -110,6 +110,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(
+            value = "UserService::getPictureAuthor",
+            key = "#pictureId"
+    )
+    public User getPictureAuthor(
+            final Long pictureId
+    ) {
+        return userRepository.findPictureAuthor(pictureId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("User not found."));
+    }
+
+    @Override
     @Transactional
     @CacheEvict(
             value = "UserService::getById",

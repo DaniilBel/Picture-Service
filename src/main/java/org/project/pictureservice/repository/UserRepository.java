@@ -14,6 +14,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
     );
 
     @Query(value = """
+            SELECT u.id as id,
+            u.name as name,
+            u.username as username,
+            u.password as password
+            FROM users_pictures up
+            JOIN users u ON up.user_id = u.id
+            WHERE up.picture_id = :pictureId
+            """, nativeQuery = true)
+    Optional<User> findPictureAuthor(
+            @Param("pictureId") Long pictureId
+    );
+
+    @Query(value = """
             SELECT exists(
                                SELECT 1
                                FROM users_pictures

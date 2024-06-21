@@ -25,6 +25,10 @@ public interface UserService {
             Long pictureId
     );
 
+    User getPictureAuthor(
+            Long pictureId
+    );
+
     void delete(
             Long id
     );
