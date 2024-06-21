@@ -14,6 +14,8 @@ Noauth
 
 ![Swagger with noauth](docs/swagger-noauth.JPG)
 
+![Swagger with noauth](docs/swagger-more.JPG)
+
 Login
 
 ![Swagger login](docs/swagger-login.JPG)
