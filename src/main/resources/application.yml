@@ -1,0 +1,42 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  cache:
+    type: redis
+    cache-names: redis-cache
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: 6379
+      password: ${REDIS_PASSWORD}
+    mongodb:
+      authentication-database: admin
+      username: ${MONGODB_USERNAME}
+      password: ${MONGODB_PASSWORD}
+      database: ${MONGODB_DATABASE}
+      port: 27017
+      host: localhost
+  datasource:
+    url: jdbc:postgresql://${HOST}:5432/${POSTGRES_DATABASE}?currentSchema=${POSTGRES_SCHEMA}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:liquibase/db.changelog.yaml
+    enabled: true
+    default-schema: pic
+  graphql:
+    graphiql:
+      enabled: true
+
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    access: 1
+    refresh: 30
+
+minio:
+  bucket: ${MINIO_BUCKET}
+  url: ${MINIO_URL}
+  access-key: ${MINIO_ACCESS_KEY}
+  secret-key: ${MINIO_SECRETKEY}

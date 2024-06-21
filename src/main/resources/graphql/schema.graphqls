@@ -1,0 +1,13 @@
+type Query {
+    userById(id: ID!): User
+    picturesByUserId(id: ID!): [Picture]
+    pictureById(id: ID!): Picture
+}
+
+type Mutation {
+    updateUser(dto: InputUser): User!
+    deleteUserById(id: ID!): Boolean
+    createPicture(id: ID!, dto: InputPicture): Picture!
+    updatePicture(dto: InputPicture): Picture!
+    deletePicture(id: ID!): Boolean
+}

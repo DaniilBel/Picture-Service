@@ -1,0 +1,24 @@
+type User {
+    id: ID!
+    name: String!
+    username: String!
+}
+
+input InputUser {
+    id: ID
+    name: String
+    username: String
+}
+
+type Picture {
+    id: ID!
+    title: String!
+    description: String
+    images: [String]
+}
+
+input InputPicture {
+    id: ID
+    title: String
+    description: String
+}
