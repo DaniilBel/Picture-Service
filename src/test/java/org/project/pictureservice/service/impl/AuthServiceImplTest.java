@@ -38,12 +38,6 @@ public class AuthServiceImplTest {
     private UserServiceImpl userService;
 
     @MockBean
-    private UserRepository userRepository;
-
-    @MockBean
-    private PictureRepository pictureRepository;
-
-    @MockBean
     private JwtTokenProvider tokenProvider;
 
     @Autowired

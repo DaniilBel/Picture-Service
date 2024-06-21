@@ -18,7 +18,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
-import java.util.Properties;
 import java.util.Set;
 
 @ExtendWith(SpringExtension.class)

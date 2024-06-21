@@ -44,7 +44,7 @@ public class PictureController {
     @PutMapping
     @MutationMapping(name = "updatePicture")
     @Operation(summary = "Update picture")
-    @PreAuthorize("canAccessPicture(#dto.id)")
+//    @PreAuthorize("canAccessPicture(#dto.id)")
     public PictureDto update(
             @Validated(OnUpdate.class)
             @RequestBody @Argument final PictureDto dto
@@ -57,7 +57,7 @@ public class PictureController {
     @GetMapping("/{id}")
     @QueryMapping(name = "pictureById")
     @Operation(summary = "Get PictureDto by id")
-    @PreAuthorize("canAccessPicture(#id)")
+//    @PreAuthorize("canAccessPicture(#id)")
     public PictureDto getById(
             @PathVariable @Argument final Long id
     ) {
@@ -68,14 +68,14 @@ public class PictureController {
     @DeleteMapping("/{id}")
     @MutationMapping(name = "deletePicture")
     @Operation(summary = "Delete picture")
-    @PreAuthorize("canAccessPicture(#id)")
+//    @PreAuthorize("canAccessPicture(#id)")
     public void deleteById(@PathVariable @Argument final Long id) {
         pictureService.delete(id);
     }
 
     @PostMapping("/{id}/image")
     @Operation(summary = "Upload image to picture")
-    @PreAuthorize("canAccessPicture(#id)")
+//    @PreAuthorize("canAccessPicture(#id)")
     public void uploadImage(
             @PathVariable final Long id,
             @Validated @ModelAttribute final PictureImageDto imageDto

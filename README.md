@@ -21,3 +21,11 @@ Login
 Authenticated
 
 ![Swagger with auth](docs/swagger-noauth.JPG)
+
+## Tests
+
+Тестировался service.impl, потому что в нём основная логика взаимодействия с репозиторием.
+Контроллер просто к нему обращается
+
+![Swagger with auth](docs/jacoco.JPG)
+

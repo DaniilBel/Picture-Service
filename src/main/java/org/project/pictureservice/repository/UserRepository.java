@@ -28,10 +28,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = """
             SELECT exists(
-                               SELECT 1
-                               FROM users_pictures
-                               WHERE user_id = :userId
-                                 AND picture_id = :pictureId)
+                SELECT 1
+                FROM users_pictures
+                WHERE user_id = :userId
+                AND picture_id = :pictureId)
                 """, nativeQuery = true)
     boolean isPictureOwner(
             @Param("userId") Long userId,
