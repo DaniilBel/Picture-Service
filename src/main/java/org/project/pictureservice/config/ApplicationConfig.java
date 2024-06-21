@@ -1,6 +1,11 @@
 package org.project.pictureservice.config;
 
 import io.minio.MinioClient;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.project.pictureservice.service.props.MinioProperties;
@@ -64,6 +69,27 @@ public class ApplicationConfig {
                 .credentials(minioProperties.getAccessKey(),
                         minioProperties.getSecretKey())
                 .build();
+    }
+
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI()
+                .addSecurityItem(new SecurityRequirement()
+                        .addList("bearerAuth"))
+                .components(
+                        new Components()
+                                .addSecuritySchemes("bearerAuth",
+                                        new SecurityScheme()
+                                                .type(SecurityScheme.Type.HTTP)
+                                                .scheme("bearer")
+                                                .bearerFormat("JWT")
+                                )
+                )
+                .info(new Info()
+                        .title("Picture service API")
+                        .description("Demo")
+                        .version("1.0")
+                );
     }
 
     @Bean

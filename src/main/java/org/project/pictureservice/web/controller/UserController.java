@@ -1,5 +1,7 @@
 package org.project.pictureservice.web.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.project.pictureservice.domain.picture.Picture;
 import org.project.pictureservice.domain.user.User;
@@ -30,6 +32,10 @@ import java.util.List;
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 @Validated
+@Tag(
+        name = "User Controller",
+        description = "User API"
+)
 public class UserController {
     private final UserService userService;
     private final PictureService pictureService;
@@ -39,6 +45,7 @@ public class UserController {
 
     @PutMapping
     @MutationMapping(name = "updateUser")
+    @Operation(summary = "Update user")
     @PreAuthorize("@customSecurityExpression.canAccessUser(#dto.id)")
     public UserDto update(
             @Validated(OnCreate.class)
@@ -51,6 +58,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @QueryMapping(name = "userById")
+    @Operation(summary = "Get UserDto by id")
     @PreAuthorize("@customSecurityExpression.canAccessUser(#id)")
     public UserDto getById(@PathVariable @Argument final Long id) {
         User user = userService.getById(id);
@@ -59,6 +67,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @MutationMapping(name = "deleteUserById")
+    @Operation(summary = "Delete user by id")
     @PreAuthorize("@customSecurityExpression.canAccessUser(#id)")
     public void deleteById(@PathVariable @Argument final Long id) {
         userService.delete(id);
@@ -66,6 +75,7 @@ public class UserController {
 
     @GetMapping("/{id}/pictures")
     @QueryMapping(name = "picturesByUserId")
+    @Operation(summary = "Get all user pictures")
     @PreAuthorize("@customSecurityExpression.canAccessUser(#id)")
     public List<PictureDto> getPicturesByUserId(@PathVariable @Argument final Long id) {
         List<Picture> pictures = pictureService.getAllByUserId(id);
@@ -74,6 +84,7 @@ public class UserController {
 
     @PostMapping("/{id}/pictures")
     @MutationMapping(name = "createPicture")
+    @Operation(summary = "Add task to user")
     @PreAuthorize("@customSecurityExpression.canAccessUser(#id)")
     public PictureDto createPicture(
             @PathVariable @Argument final Long id,

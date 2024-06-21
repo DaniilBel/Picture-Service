@@ -35,6 +35,9 @@ security:
     access: 1
     refresh: 30
 
+springdoc:
+  override-with-generic-response: false
+
 minio:
   bucket: ${MINIO_BUCKET}
   url: ${MINIO_URL}
