@@ -31,3 +31,6 @@ Authenticated
 
 ![Swagger with auth](docs/jacoco.JPG)
 
+Локальные тесты выполняются
+
+![Swagger with auth](docs/local-tests.JPG)
