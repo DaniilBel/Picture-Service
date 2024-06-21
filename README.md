@@ -1,12 +1,4 @@
-# Demo picture service
-
-Query(old):
-
-![GraphQL query](docs/graphql-req.JPG)
-
-Mutation(old): 
-
-![GraphQL mutation](docs/graphql-req-mut.JPG)
+# Picture service
 
 Login:
 
@@ -16,3 +8,16 @@ Example:
 
 ![GraphQL query with auth](docs/graphql-req-auth.JPG)
 
+## Swagger example
+
+Noauth
+
+![Swagger with noauth](docs/swagger-noauth.JPG)
+
+Login
+
+![Swagger login](docs/swagger-login.JPG)
+
+Authenticated
+
+![Swagger with auth](docs/swagger-noauth.JPG)
