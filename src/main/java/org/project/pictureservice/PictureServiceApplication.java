@@ -19,11 +19,4 @@ public class PictureServiceApplication {
         SpringApplication.run(PictureServiceApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(KafkaTemplate<String, String> kafkaTemplate) {
-        return args -> {
-            kafkaTemplate.send("picture-service", "picture service");
-        };
-    }
-
 }
